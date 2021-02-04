@@ -63,7 +63,6 @@ module.exports = {
               od_updated_at: item.od_updated_at,
               product_order: order
             }
-            i++
           }
           resolve(data)
         } else {
@@ -84,7 +83,7 @@ module.exports = {
       JOIN delivery dv ON (od.dv_id = dv.dv_id)
       JOIN customer cs ON (od.cs_id = cs.cs_id)
       JOIN account ac ON (ac.ac_id = cs.ac_id)
-      WHERE od.od_id = ${odId}
+      WHERE od.od_id = '${odId}'
       `
 
       dbConnect.query(query, async (error, results, _fields) => {
@@ -114,10 +113,10 @@ module.exports = {
               od_updated_at: item.od_updated_at,
               product_order: order
             }
-            i++
           }
           resolve(data)
         } else {
+          console.log(error);
           reject(error)
         }
       })
@@ -201,4 +200,3 @@ module.exports = {
   }
 
 }
-
