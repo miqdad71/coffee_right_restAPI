@@ -16,6 +16,7 @@ module.exports = {
       JOIN delivery dv ON (od.dv_id = dv.dv_id)
       JOIN customer cs ON (od.cs_id = cs.cs_id)
       JOIN account ac ON (ac.ac_id = cs.ac_id)
+      GROUP BY od.od_id
       `
 
       dbConnect.query(query, async(error, results, _fields) => {
